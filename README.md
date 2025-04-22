@@ -1,6 +1,4 @@
----
-layout: default
----
+# League of Legends Esports Match Data Analysis
 
 ## Introduction
 The dataset I chose to analyze for this project was League of Legends Esports Match Data for the year of 2024.
