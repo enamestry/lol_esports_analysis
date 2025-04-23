@@ -45,13 +45,46 @@ For my data cleaning, I approximately followed these steps:
 
 I decided to first look at the distributions of several of the variables given. I focused on numerical variables as most categorical variables were evenly distributed given that there are the same number of each of the roles and sides in each match. First I looked at the "gamelength variable" from the teamdata, where I found it to be fairly normally distributed but with several outliers. My second analysis was of "goldat10", which is the amount of gold that each player had after the first 10 minutes of the game. I found that this one had two peaks, with one significantly lower than the other. I believed this to be due to player roles, where some roles like support typically have less gold than other positions. This inspired some of my later analysis.
 
-TODO add graphs
+ <iframe
+ src="assets/fig_gl.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
+
+ <iframe
+ src="assets/fig_g.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
+
 
 #### Bivariate Analysis
 
 I also wanted to conduct bivariate analysis to see how some of the relevant variables interacted with each other. The first relationships I wanted to look at were the gold and xp over time for winning vs losing players, which are pictured in the first and second graphs below. They were about what I expected, but it was difficult to take away more than the expected basic relationship from these graphs. Next, I wanted to reinvestigate the strange multimodal distribution for player gold at 10 minutes, so I separated it out by player role. I was able to find that supports had significantly lower gold on average than the rest of the roles, which likely accounted for the smaller curve in the first graph.
 
-TODO add graphs
+ <iframe
+ src="assets/fig_got.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
+
+ <iframe
+ src="assets/fig_xpot.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
+
+ <iframe
+ src="assets/fig_posvsgold.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
+
 
 #### Interesting Aggregates
 
@@ -62,7 +95,14 @@ When looking at aggregates I strayed a bit from my initial question because ther
 
 * Number of teams played on in 2024 by each player - I was honestly just curious about how frequently players switched teams. From what I understand, there's offseason and then competition season each year with several competitions, and you might expect 1-3 team switches, maybe one after each tournament if you're really a hot commodity. I was shocked to see Black come up with a whopping 8 teams played for in just one year.
 
-TODO add aggregates
+<iframe src="assets/agg1.html" width="800" height="400" frameborder="0">
+</iframe>
+
+<iframe src="assets/agg2.html" width="800" height="400" frameborder="0">
+</iframe>
+
+<iframe src="assets/agg3.html" width="800" height="400" frameborder="0">
+</iframe>
 
 #### Imputation (or lack thereof)
 When going through the data, I noticed that the variation in game length meant that many of the shorter games were missing data for later-game metrics such as "goldat25". Since I wanted to focus on the gold/xp/cs metrics at different points in games, I would in theory need to impute values for these games. However, I ultimately decided not to impute these values as it would be very difficult to estimate values that would still garner meaningful results from a model trained with them. Even if I took the values from previous measured points in time, those would be significantly lower than non-imputed values measured at the actual specified time. I instead did not include later measurements in my model training and focused on more universal metrics.
