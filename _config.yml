@@ -1,5 +1,5 @@
 title: League of Legends Esports Match Data Analysis
-description: This is a project for the University of Michigan course EECS 398- Practical Data Science.
+description: This is a project for the University of Michigan course EECS 398- Practical Data Science. Made by Ena Mestry (emestry@umich.edu).
 remote_theme: pages-themes/tactile@v0.2.0
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
