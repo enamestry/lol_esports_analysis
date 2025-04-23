@@ -104,6 +104,8 @@ The prediction problem I chose was to predict game result for teams based on the
 
 Even though many of the utilized statistics would not be available before the end of the game, where we would already know match result, I still wanted to try predicting with them. I wanted to see how well the model could do with mostly just stat differences, which would indirectly tell me how much these stat differences actually influenced game outcome. 
 
+To quantify performance, I used the train and test accuracy rather than a more complicated metric such as F1-score, which is often needed when there is an imbalance of data. However, I know that there will be an exactly equal amount of win data vs loss data due to how the dataset is constructed, so skewed sample distribution is not a concern. Accuracy is a simple statistic which fits well for our current goals.
+
 ## Baseline Model
 For my baseline model, I decided to use a simple LogisticRegression model with the following variables:
 * side (nominal)
@@ -114,8 +116,6 @@ For my baseline model, I decided to use a simple LogisticRegression model with t
 The "side", "earnedgold", and "goldspent" features all gave a more overarching perspective of the game, while the "goldat10" feature gave a better idea of if a game started out very biased with one team getting a big lead that was likely to snowball later in the game.
 
 The "side" variable needed to be OneHotEncoded as it is a categorical variable, so I did this first, creating a column transformer to apply the transformation and using the argument remainder="passthrough" to ensure that all the non-transformed columns were still used for model fitting.
-
-To quantify performance, I used the train and test accuracy rather than a more complicated metric such as F1-score, which is often needed when there is an imbalance of data. However, I know that there will be an exactly equal amount of win data vs loss data due to how the dataset is constructed, so skewed sample distribution is not a concern. Accuracy is a simple statistic which fits well for our current goals.
 
 With an accuracy score of ~0.8 on both train and test data, I would say that my model is currently fairly decent, but nothing too special. It does have final metrics that wouldn't be accessible mid-game that could be accounting for the already fine performance. One thing that I would note as being a very good sign is that it has minimal difference between its performance on train and test data, which indicates that there is likely not too much overfitting to the training data.
 
