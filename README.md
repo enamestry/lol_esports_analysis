@@ -8,19 +8,13 @@ The dataset contains 117600 rows of player & team data corresponding to 9800 mat
 The question I wanted to investigate further was about stat differences over time- would it become more pronounced or would teams be able to close the gap as game length increased? Additionally, was the higher or lower gold a large factor in whether the team would win or not? I was especially curious if it would not matter as much in the later game after everyone was able to get fully geared up- at that point it would just be down to skill, which is fairly evenly matched among pro players.
 
 To answer my question, I first looked in the data to find columns that I thought would be relevant to my question about stat differences. I ended up deciding to mainly focus on the following:
-* "gamelength"
-* "result"
-* "totalgold"
-* "earnedgold" - I'm making an educated guess that this is just totalgold but without passive gold gain over time
-* "goldspent"
-* "goldat10", "xpat10", "csat10"
-* "golddiffat10", "xpdiffat10", "csdiffat10"
-* "goldat15", "xpat15", "csat15"
-* "golddiffat15", "xpdiffat15", "csdiffat15"
-* "goldat20", "xpat20", "csat20"
-* "golddiffat20", "xpdiffat20", "csdiffat20"
-* "goldat25", "xpat25", "csat25"
-* "golddiffat25", "xpdiffat25", "csdiffat25"
+* "gamelength" - the length of the match, in seconds
+* "result" - true/false, true if the player/team won the match
+* "totalgold" - total gained gold of each player/team throughout the whole match
+* "earnedgold" - totalgold but without passive gold gain over time
+* "goldspent" - total gold spent by each player/team throughout the whole match
+* "goldat10", "xpat10" - assorted game stats (gold, experience) measured at 10 minutes into the match
+* "golddiffat10", "xpdiffat10" - differences in friendly team/enemy teams stats at 10 minutes into the match
 
 I wanted to analyze all I could about the size of stat differences over time as well as how much they affected game outcome- and see how difficult it would be to accurately predict game result based on those stat differences over time (how early in the game could the result be predicted?).
 
@@ -62,7 +56,7 @@ I decided to first look at the distributions of several of the variables given. 
 
 #### Bivariate Analysis
 
-I also wanted to conduct bivariate analysis to see how some of the relevant variables interacted with each other. The first relationships I wanted to look at were the gold and xp over time for winning vs losing players, which are pictured in the first and second graphs below. They were about what I expected, but it was difficult to take away more than the expected basic relationship from these graphs. Next, I wanted to reinvestigate the strange multimodal distribution for player gold at 10 minutes, so I separated it out by player role. I was able to find that supports had significantly lower gold on average than the rest of the roles, which likely accounted for the smaller curve in the first graph.
+I also wanted to conduct bivariate analysis to see how some of the relevant variables interacted with each other. The first relationships I wanted to look at were the gold and xp over time for winning vs losing players, which are pictured in the first and second graphs below. They were about what I expected, but it was difficult to take away more than the expected basic relationship from these graphs. Next, I wanted to reinvestigate the strange multimodal distribution for player gold at 10 minutes, so I separated it out by player role. I was able to find that supports had significantly lower gold on average than the rest of the roles, which likely accounted for the smaller curve in the univariate graph.
 
  <iframe
  src="assets/fig_got.html"
@@ -90,17 +84,14 @@ I also wanted to conduct bivariate analysis to see how some of the relevant vari
 
 When looking at aggregates I strayed a bit from my initial question because there were so many statistics I was curious about! The three that I wanted to higlight were the following:
 * Champion win rate - As we can see, some champions have almost abnormally high win rates, while others haven't managed to win even once.
-
-* Total number of wins of each team - "unknown team" takes the top on this one, but is really an amalgamation of all unknown teams. If we disregard this, Gen.G has the highest amount of wins in 2024 with an impressive 101 and are the only team to have higher than 100 wins.
-
-* Number of teams played on in 2024 by each player - I was honestly just curious about how frequently players switched teams. From what I understand, there's offseason and then competition season each year with several competitions, and you might expect 1-3 team switches, maybe one after each tournament if you're really a hot commodity. I was shocked to see Black come up with a whopping 8 teams played for in just one year.
-
 <iframe src="assets/agg1.html" width="800" height="400" frameborder="0">
 </iframe>
 
+* Total number of wins of each team - "unknown team" takes the top on this one, but is really an amalgamation of all unknown teams. If we disregard this, Gen.G has the highest amount of wins in 2024 with an impressive 101 and are the only team to have higher than 100 wins.
 <iframe src="assets/agg2.html" width="800" height="400" frameborder="0">
 </iframe>
 
+* Number of teams played on in 2024 by each player - I was honestly just curious about how frequently players switched teams. From what I understand, there's offseason and then competition season each year with several competitions, and you might expect 1-3 team switches, maybe one after each tournament if you're really a hot commodity. I was shocked to see Black come up with a whopping 8 teams played for in just one year.
 <iframe src="assets/agg3.html" width="800" height="400" frameborder="0">
 </iframe>
 
